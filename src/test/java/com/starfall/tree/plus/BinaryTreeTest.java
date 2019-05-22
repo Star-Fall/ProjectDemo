@@ -1,6 +1,5 @@
-package com.starfall.test;
+package com.starfall.tree.plus;
 
-import com.starfall.tree.plus.BinaryTree;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,12 +8,12 @@ import java.util.List;
 /**
  * @author StarFall
  * @project ProjectDemo
- * @package com.starfall.test
- * @className DemoTest2
- * @date 2019/5/22 16:26
- * @description todo
+ * @package com.starfall.tree.plus
+ * @className BinaryTreeTest
+ * @date 2019/5/22 20:30
+ * @description BinaryTreeTest
  */
-public class DemoTest2 {
+public class BinaryTreeTest {
 
     @Test
     public void test1() {
