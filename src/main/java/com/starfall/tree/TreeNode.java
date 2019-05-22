@@ -9,25 +9,39 @@ package com.starfall.tree;
  * @description TreeNode
  */
 public class TreeNode<T> {
-	public TreeNode<T> left;
-	public TreeNode<T> right;
-	public T value;
+    public TreeNode<T> left;
+    public TreeNode<T> right;
+    public T value;
 
-	public TreeNode() {
+    public TreeNode() {
 
-	}
+    }
 
-	public TreeNode(T value) {
-		this.value = value;
-	}
+    public TreeNode(T value) {
+        this.value = value;
+    }
 
-	public void addLeft(T value) {
-		TreeNode<T> leftChild = new TreeNode<>(value);
-		this.left = leftChild;
-	}
+    public TreeNode<T> getLeft() {
+        return left;
+    }
 
-	public void addRight(T value) {
-		TreeNode<T> rightChild = new TreeNode<>(value);
-		this.right = rightChild;
-	}
+    public void setLeft(TreeNode<T> left) {
+        this.left = left;
+    }
+
+    public TreeNode<T> getRight() {
+        return right;
+    }
+
+    public void setRight(TreeNode<T> right) {
+        this.right = right;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
 }
