@@ -20,6 +20,7 @@ public class BinaryTreeTest {
 	 */
 	@Test
 	public void test01() {
+		System.out.println("添加子树创建二叉树");
 		// 层序遍历：ABCDEFG
 		// 根节点
 		BinaryTree<String> btree = new BinaryTree<>("A");
@@ -46,6 +47,8 @@ public class BinaryTreeTest {
 		btree.midOrder();
 		btree.backOrder();
 		btree.levelOrder();
+		btree.destroyTree();
+		System.out.println("添加子树创建二叉树*****end");
 	}
 
 	/**
@@ -53,6 +56,7 @@ public class BinaryTreeTest {
 	 */
 	@Test
 	public void test02() {
+		System.out.println("前序遍历创建二叉树");
 		// 补全空节点
 		List<String> list = Arrays.asList("A", "B", "D", null, null, "F", "E", null, null, null, "C", "G", null, "H",
 				null, null, "I", null, null);
@@ -62,6 +66,8 @@ public class BinaryTreeTest {
 		bt.midOrder();
 		bt.backOrder();
 		bt.levelOrder();
+		bt.destroyTree();
+		System.out.println("前序遍历创建二叉树*****end");
 	}
 
 	/**
@@ -69,6 +75,7 @@ public class BinaryTreeTest {
 	 */
 	@Test
 	public void test03() {
+		System.out.println("层序遍历创建二叉树");
 		// 补全空节点，转为完全二叉树
 		List<String> list = Arrays.asList("A", "B", "C", "D", "F", "G", "I", null, null, "E", null, null, "H");
 		BinaryTree<String> bt = new BinaryTree<>();
@@ -77,6 +84,8 @@ public class BinaryTreeTest {
 		bt.midOrder();
 		bt.backOrder();
 		bt.levelOrder();
+		bt.destroyTree();
+		System.out.println("层序遍历创建二叉树*****end");
 	}
 
 	/**
@@ -84,6 +93,7 @@ public class BinaryTreeTest {
 	 */
 	@Test
 	public void test04() {
+		System.out.println("二叉树其他用法");
 		List<String> list = Arrays.asList("A", "B", "D", null, null, "F", "E", null, null, null, "C", "G", null, "H",
 				null, null, "I", null, null);
 		BinaryTree<String> bt = new BinaryTree<>();
@@ -91,6 +101,10 @@ public class BinaryTreeTest {
 		System.out.println(bt.getNodeNum());
 		System.out.println(bt.getTreeDepth());
 		System.out.println(bt.getLeafNum());
+		bt.preOrder();
+		bt.midOrder();
+		bt.backOrder();
+		bt.levelOrder();
 		System.out.println("************");
 		BinaryTree<String> tree = bt.getBTree("F");
 		System.out.println(tree.getNodeNum());
@@ -98,5 +112,8 @@ public class BinaryTreeTest {
 		System.out.println(tree.getLeafNum());
 		System.out.println(tree.getRoot().getData());
 		tree.levelOrder();
+		bt.destroyTree();
+		tree.destroyTree();
+		System.out.println("二叉树其他用法*****end");
 	}
 }

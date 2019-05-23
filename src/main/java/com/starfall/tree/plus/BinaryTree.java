@@ -38,6 +38,10 @@ public class BinaryTree<T> {
 
 	}
 
+	public void destroyTree() {
+		this.root = null;
+	}
+
 	/**
 	 * 获取根节点
 	 * 
@@ -59,7 +63,7 @@ public class BinaryTree<T> {
 		if (node == null) {
 			return null;
 		} else {
-			return new BinaryTree<T>(node);
+			return new BinaryTree<>(node);
 		}
 	}
 
@@ -150,7 +154,7 @@ public class BinaryTree<T> {
 	/**
 	 * 层序遍历创建二叉树
 	 * 
-	 * @param list
+	 * @param list list参数
 	 */
 	public void levelCreateTree(List<T> list) {
 		this.root = levelCreateTree(this.root, list, LEVEL_LIST_INDEX);
@@ -254,7 +258,7 @@ public class BinaryTree<T> {
 	}
 
 	private void levelOrder(TreeNode<T> node) {
-		Queue<TreeNode<T>> q = new LinkedList<TreeNode<T>>();
+		Queue<TreeNode<T>> q = new LinkedList<>();
 		q.offer(root);
 		while (!q.isEmpty()) {
 			TreeNode<T> temp = q.poll();
