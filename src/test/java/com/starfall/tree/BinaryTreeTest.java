@@ -1,4 +1,4 @@
-package com.starfall.tree.plus;
+package com.starfall.tree;
 
 import org.junit.Test;
 
