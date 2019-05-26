@@ -338,10 +338,14 @@ public class BinaryTree<T> {
 		}
 	}
 
+	/**
+	 * 非递归前序遍历
+	 */
 	public void preOrderNoRecursion() {
 		if (this.root == null) {
 			return;
 		}
+		System.out.print("[");
 		TreeNode<T> node = this.root;
 		Stack<TreeNode<T>> stack = new Stack<>();
 		while (node != null || !stack.empty()) {
@@ -354,12 +358,17 @@ public class BinaryTree<T> {
 				node = node.right;
 			}
 		}
+		System.out.println("]");
 	}
 
+	/**
+	 * 非递归前序遍历2
+	 */
 	public void preOrderNoRecursion2() {
 		if (this.root == null) {
 			return;
 		}
+		System.out.print("[");
 		TreeNode<T> node = this.root;
 		Stack<TreeNode<T>> stack = new Stack<>();
 		stack.push(node);
@@ -374,6 +383,95 @@ public class BinaryTree<T> {
 				node = stack.pop();
 			}
 		}
+		System.out.println("]");
+	}
+
+	/**
+	 * 非递归中序遍历
+	 */
+	public void midOrderNoRecursion() {
+		if (this.root == null) {
+			return;
+		}
+		System.out.print("[");
+		TreeNode<T> node = this.root;
+		Stack<TreeNode<T>> stack = new Stack<>();
+		while (!stack.empty() || node != null) {
+			if (node != null) {
+				stack.push(node);
+				node = node.left;
+			} else {
+				node = stack.pop();
+				System.out.print(node.data + "\t");
+				node = node.right;
+			}
+		}
+		System.out.println("]");
+	}
+
+	/**
+	 * 非递归后序遍历
+	 */
+	public void backOrderNoRecursion() {
+		if (this.root == null) {
+			return;
+		}
+		System.out.print("[");
+		TreeNode<T> node = this.root;
+		TreeNode<T> temp = null;
+		Stack<TreeNode<T>> stack = new Stack<>();
+		while (node != null || !stack.empty()) {
+			// 沿左子树一直往下搜索，直至出现没有左子树的结点
+			while (node != null) {
+				stack.push(node);
+				node = node.left;
+			}
+			if (!stack.empty()) {
+				node = stack.peek();
+				// 如果栈顶元素的右子树为空，或者栈顶节点的右孩子为刚访问过得节点，则退栈并访问
+				if (node.right == null || node.right == temp) {
+					System.out.print(node.data + "\t");
+					stack.pop();
+					// 记录最近访问的节点
+					temp = node;
+					node = null;
+				} else {
+					node = node.right;
+				}
+			}
+		}
+		System.out.println("]");
+	}
+
+	/**
+	 * 非递归后序遍历2
+	 */
+	public void backOrderNoRecursion2() {
+		if (this.root == null) {
+			return;
+		}
+		System.out.print("[");
+		TreeNode<T> node = this.root;
+		TreeNode<T> temp = null;
+		Stack<TreeNode<T>> stack = new Stack<>();
+		stack.push(node);
+		while (!stack.empty()) {
+			node = stack.peek();
+			if ((node.left == null && node.right == null)
+					|| (temp != null && (temp == node.left || temp == node.right))) {
+				System.out.print(node.data + "\t");
+				stack.pop();
+				temp = node;
+			} else {
+				if (node.right != null) {
+					stack.push(node.right);
+				}
+				if (node.left != null) {
+					stack.push(node.left);
+				}
+			}
+		}
+		System.out.println("]");
 	}
 
 	public static class TreeNode<T> {

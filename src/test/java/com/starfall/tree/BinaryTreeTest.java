@@ -154,9 +154,16 @@ public class BinaryTreeTest {
 				null, null, "I", null, null);
 		BinaryTree<String> bt = new BinaryTree<>();
 		bt.preCreateTree(list);
+		System.out.println("*******前序遍历******");
 		bt.preOrder();
 		bt.preOrderNoRecursion();
-		System.out.println();
 		bt.preOrderNoRecursion2();
+		System.out.println("*******中序遍历******");
+		bt.midOrder();
+		bt.midOrderNoRecursion();
+		System.out.println("*******后序遍历******");
+		bt.backOrder();
+		bt.backOrderNoRecursion();
+		bt.backOrderNoRecursion2();
 	}
 }
