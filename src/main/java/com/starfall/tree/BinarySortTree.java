@@ -85,7 +85,7 @@ public class BinarySortTree<T extends Comparable<T>> {
 
 	/**
 	 * 递归查找二叉树节点
-	 * 
+	 *
 	 * @param data
 	 *            查找数据
 	 * @return 节点
@@ -179,6 +179,12 @@ public class BinarySortTree<T extends Comparable<T>> {
 		return node;
 	}
 
+	/**
+	 * 非递归插入节点算法
+	 *
+	 * @param data
+	 *            插入的数据
+	 */
 	private void insertBSTNoRecursive(T data) {
 		if (this.root == null || this.root.data == null) {
 			this.root = new TreeNode<>(data);
@@ -190,7 +196,7 @@ public class BinarySortTree<T extends Comparable<T>> {
 			if (current.data.compareTo(data) > 0) {
 				// 左子树为空，则插入到该节点的左孩子
 				if (current.left == null) {
-					current.left = new TreeNode<T>(data);
+					current.left = new TreeNode<>(data);
 					return;
 				}
 				// 左子树不为空，继续遍历左子树
@@ -198,7 +204,7 @@ public class BinarySortTree<T extends Comparable<T>> {
 			} else if (current.data.compareTo(data) < 0) {
 				// 右子树为空，则插入到该节点的右孩子
 				if (current.right == null) {
-					current.right = new TreeNode<T>(data);
+					current.right = new TreeNode<>(data);
 					return;
 				}
 				// 右子树不为空，继续遍历右子树
@@ -209,6 +215,12 @@ public class BinarySortTree<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 非递归插入节点算法2
+	 *
+	 * @param data
+	 *            插入的数据
+	 */
 	private void insertBSTNoRecursive2(T data) {
 		if (this.root == null || this.root.data == null) {
 			this.root = new TreeNode<>(data);
