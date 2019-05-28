@@ -103,7 +103,7 @@ public class BinarySortTreeTest {
 		bst.backOrder();
 		bst.levelOrder();
 		System.out.println("删除节点");
-		bst.deleteNode(47);
+		bst.deleteSingleNode(47);
 		bst.preOrder();
 		bst.levelOrder();
 	}
@@ -118,7 +118,7 @@ public class BinarySortTreeTest {
 		bst.backOrder();
 		bst.levelOrder();
 		System.out.println("删除节点");
-		bst.deleteNode(87);
+		bst.deleteSingleNode(59);
 		bst.preOrder();
 		bst.levelOrder();
 	}
