@@ -84,6 +84,38 @@ public class BinarySortTree<T extends Comparable<T>> {
 	}
 
 	/**
+	 * 获取二叉排序树最大值
+	 *
+	 * @return 最大值
+	 */
+	public T getMaxValue() {
+		if (this.root == null || this.root.data == null) {
+			return null;
+		}
+		TreeNode<T> node = this.root;
+		while (node.right != null) {
+			node = node.right;
+		}
+		return node.data;
+	}
+
+	/**
+	 * 获取二叉排序树最小值
+	 *
+	 * @return 最小值
+	 */
+	public T getMinValue() {
+		if (this.root == null || this.root.data == null) {
+			return null;
+		}
+		TreeNode<T> node = this.root;
+		while (node.left != null) {
+			node = node.left;
+		}
+		return node.data;
+	}
+
+	/**
 	 * 递归查找二叉树节点
 	 *
 	 * @param data
@@ -256,7 +288,92 @@ public class BinarySortTree<T extends Comparable<T>> {
 	 *            节点数据
 	 */
 	public void deleteNode(T data) {
+		if (this.root == null || this.root.data == null) {
+			return;
+		}
+		TreeNode<T> current = this.root; // 记录根节点引用
+		TreeNode<T> parent = this.root; // 记录搜索到空节点的父节点
+		boolean isLeftChild = true; // current是否是parent的左孩子
+		/**
+		 * 搜索二叉排序树，找到可以插入的节点及其父节点；并记录节点是父节点的左或右子树
+		 */
+		while (current.data.compareTo(data) != 0) {
+			parent = current; // 记录parent节点
+			if (current.data.compareTo(data) > 0) { // 搜索左子树
+				current = current.left;
+				isLeftChild = true;
+			} else if (current.data.compareTo(data) < 0) { // 搜索右子树
+				current = current.right;
+				isLeftChild = false;
+			}
+			if (current == null) { // 左右子树搜索完毕，没有找到相同节点
+				return;
+			}
+		}
+		/**
+		 * 进行删除
+		 */
+		// current左右子树为空
+		if (current.left == null && current.right == null) {
+			if (current == this.root) { // 删除的是根节点
+				this.root = null;
+			}
+			if (isLeftChild) {
+				parent.left = null;
+			} else {
+				parent.right = null;
+			}
+		}
+		// current左子树不为空，右子树为空
+		else if (current.left != null & current.right == null) {
+			if (current == this.root) { // 删除的是根节点
+				this.root = current.left;
+			}
+			if (isLeftChild) {
+				parent.left = current.left;
+			} else {
+				parent.right = current.left;
+			}
 
+		}
+		// current左子树不为空，右子树为空
+		else if (current.right != null & current.left == null) {
+			if (current == this.root) { // 删除的是根节点
+				this.root = current.right;
+			}
+			if (isLeftChild) {
+				parent.left = current.right;
+			} else {
+				parent.right = current.right;
+			}
+		}
+		// current左右子树都不为空
+		else if (current.left != null && current.right != null) {
+			/**
+			 * method 1：前驱替换删除的节点<br>
+			 * 该节点的左子树中的最大节点，即左子树中最右侧节点
+			 */
+
+			/**
+			 * method 2：后继替换删除的节点<br>
+			 * 该节点的右子树中的最小节点，即右子树中最左侧节点
+			 */
+			// // 右子树
+			// TreeNode<T> s = current.right;
+			// // 后继者
+			// TreeNode<T> successor = s;
+			// // 后继者的父节点
+			// TreeNode successorParent = null;
+			// while (s != null) {
+			// successorParent = successor;
+			// successor = s;
+			// s = s.left;
+			// }
+			// // 后继者父节点的左节点重新指向后继者的右节点(后继者无左节点）
+			// successorParent.left = successor.right;
+			// // 后继者数据替换删除的节点数据
+			// current.data = successor.data;
+		}
 	}
 
 	/**

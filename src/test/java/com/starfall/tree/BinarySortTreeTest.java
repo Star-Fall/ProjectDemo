@@ -80,4 +80,46 @@ public class BinarySortTreeTest {
 		}
 	}
 
+	@Test
+	public void test05() {
+		List<Integer> list = Arrays.asList(61, 87, 59, 47, 35, 60, 73, 51, 98, 37);
+		BinarySortTree<Integer> bst = new BinarySortTree<>();
+		bst.createBSTRecursive(list);
+		bst.preOrder();
+		bst.midOrder();
+		bst.backOrder();
+		bst.levelOrder();
+		System.out.println("最大值：" + bst.getMaxValue());
+		System.out.println("最小值：" + bst.getMinValue());
+	}
+
+	@Test
+	public void test06() {
+		List<Integer> list = Arrays.asList(61, 87, 59, 47, 35, 60, 73, 51, 98, 37);
+		BinarySortTree<Integer> bst = new BinarySortTree<>();
+		bst.createBSTRecursive(list);
+		bst.preOrder();
+		bst.midOrder();
+		bst.backOrder();
+		bst.levelOrder();
+		System.out.println("删除节点");
+		bst.deleteNode(47);
+		bst.preOrder();
+		bst.levelOrder();
+	}
+
+	@Test
+	public void test07() {
+		List<Integer> list = Arrays.asList(61, 87, 59, 47, 35, 60, 73, 51, 98, 37, 93, 94, 100);
+		BinarySortTree<Integer> bst = new BinarySortTree<>();
+		bst.createBSTRecursive(list);
+		bst.preOrder();
+		bst.midOrder();
+		bst.backOrder();
+		bst.levelOrder();
+		System.out.println("删除节点");
+		bst.deleteNode(87);
+		bst.preOrder();
+		bst.levelOrder();
+	}
 }
