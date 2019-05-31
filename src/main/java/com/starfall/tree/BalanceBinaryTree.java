@@ -29,6 +29,15 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 		return 0;
 	}
 
+	/**
+	 * 获取两数最大值
+	 * 
+	 * @param a
+	 *            数值1
+	 * @param b
+	 *            数值2
+	 * @return 最大值
+	 */
 	private int max(int a, int b) {
 		return a > b ? a : b;
 	}
@@ -42,6 +51,7 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	 */
 	private TreeNode<T> leftLeftRotation(TreeNode<T> k2) {
 		TreeNode<T> k1;
+        //初始化K2节点
 		k1 = k2.left;
 
 		k2.left = k1.right;
@@ -60,6 +70,7 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	 */
 	private TreeNode<T> rightRightRotation(TreeNode<T> k1) {
 		TreeNode<T> k2;
+		//初始化K2节点
 		k2 = k1.right;
 
 		k1.right = k2.left;
@@ -79,7 +90,7 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	private TreeNode<T> leftRightRotation(TreeNode<T> k3) {
 		// 第一步：RR旋转
 		k3.left = rightRightRotation(k3.left);
-		// 第二部：LL旋转
+		// 第二步：LL旋转
 		return leftLeftRotation(k3);
 	}
 
@@ -93,14 +104,29 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	private TreeNode<T> rightLeftRotation(TreeNode<T> k1) {
 		// 第一步：LL旋转
 		k1.right = leftLeftRotation(k1.right);
-		// 第二部：RR旋转
+		// 第二步：RR旋转
 		return rightRightRotation(k1);
 	}
 
+	/**
+	 * 插入节点
+	 * 
+	 * @param key
+	 *            插入数据
+	 */
 	public void insert(T key) {
 		this.root = insertNode(this.root, key);
 	}
 
+	/**
+	 * 插入
+	 * 
+	 * @param node
+	 *            节点
+	 * @param data
+	 *            数据
+	 * @return 插入后的节点
+	 */
 	private TreeNode<T> insertNode(TreeNode<T> node, T data) {
 		if (node == null) {
 			node = new TreeNode<>(data);

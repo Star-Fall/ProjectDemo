@@ -34,4 +34,19 @@ public class InsertionSort {
 			}
 		}
 	}
+
+	public void straightInsertionSort(int arr[]) {
+		int temp,j;
+		for (int i = 1; i < arr.length; i++) {
+			temp = arr[i];
+			// 遍历有序序列
+			for (j = i - 1; j >= 0; j--) {
+				// 找到插入temp的位置
+				if (temp < arr[j]) {
+
+				}
+			}
+		}
+
+	}
 }

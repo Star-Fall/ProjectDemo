@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author StarFall
  * @project ProjectDemo
@@ -19,7 +17,7 @@ public class InsertionSortTest {
 	@Test
 	public void test01() {
 		InsertionSort sort = new InsertionSort();
-		int[] arr = { 12, 15, 9, 20, 6, 31, 24 };
+		int[] arr = { 3,2,4,7,6,8 };
 		sort.straightInsertionSort(arr, arr.length);
 		System.out.println(Arrays.toString(arr));
 	}
