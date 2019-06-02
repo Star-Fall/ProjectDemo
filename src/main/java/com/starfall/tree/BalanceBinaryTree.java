@@ -51,7 +51,7 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	 */
 	private TreeNode<T> leftLeftRotation(TreeNode<T> k2) {
 		TreeNode<T> k1;
-        //初始化K2节点
+		// 初始化K2节点
 		k1 = k2.left;
 
 		k2.left = k1.right;
@@ -70,7 +70,7 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 	 */
 	private TreeNode<T> rightRightRotation(TreeNode<T> k1) {
 		TreeNode<T> k2;
-		//初始化K2节点
+		// 初始化K2节点
 		k2 = k1.right;
 
 		k1.right = k2.left;
@@ -157,6 +157,108 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 					node = rightRightRotation(node);
 				else
 					node = rightLeftRotation(node);
+			}
+		}
+		return node;
+	}
+
+	/**
+	 * 搜索节点数据
+	 * 
+	 * @param data
+	 *            节点数据
+	 * @return 节点
+	 */
+	public TreeNode<T> searchTree(T data) {
+		return searchTree(this.root, data);
+	}
+
+	private TreeNode<T> searchTree(TreeNode<T> node, T data) {
+		if (node == null || node.data == null || data == null) {
+			// 条件不符，未找到相同节点，递归结束
+			return null;
+		} else if (node.data.compareTo(data) > 0) {
+			// 递归遍历左子树
+			return searchTree(node.left, data);
+		} else if (node.data.compareTo(data) < 0) {
+			// 递归遍历右子树
+			return searchTree(node.right, data);
+		} else {
+			// 遍历到相同节点，递归结束
+			return node;
+		}
+	}
+
+	/**
+	 * 删除节点
+	 * 
+	 * @param data
+	 */
+	public void deleteNode(T data) {
+		if (searchTree(data) != null) {
+			this.root = deleteNode(this.root, data);
+		}
+	}
+
+	private TreeNode<T> deleteNode(TreeNode<T> node, T data) {
+		if (node == null || node.data == null || data == null) {
+			return node;
+		}
+		if (node.data.compareTo(data) > 0) {
+			node.left = deleteNode(node.left, data);
+			// 重新设置node的高度
+			node.height = max(height(node.left), height(node.right)) + 1;
+			// 判断是否平衡
+			if (height(node.right) - height(node.left) == 2) {
+				TreeNode<T> temp = node.right;
+				if (height(temp.left) > height(temp.right)) {
+					node = rightLeftRotation(node);
+				} else {
+					node = rightRightRotation(node);
+				}
+			}
+		} else if (node.data.compareTo(data) < 0) {
+			node.right = deleteNode(node.right, data);
+			// 重新设置node的高度
+			node.height = max(height(node.left), height(node.right)) + 1;
+			// 判断是否平衡
+			if (height(node.left) - height(node.right) == 2) {
+				TreeNode<T> temp = node.left;
+				if (height(temp.right) > height(temp.left)) {
+					node = leftRightRotation(node);
+				} else {
+					node = leftLeftRotation(node);
+				}
+			}
+		} else {
+			// 左右子树都不为空
+			if (node.left != null && node.right != null) {
+				// node左子树高于右子树
+				if (height(node.left) > height(node.right)) {
+					// (01)找出node的左子树中的最大节点
+					// (02)将该最大节点的值赋值给node
+					// (03)删除该最大节点
+					TreeNode<T> max = node.left;
+					while (max.right != null) {
+						max = max.right;
+					}
+					node.left = deleteNode(node.left, max.data);
+					node.data = max.data;
+				}
+				// node的左子树不比右子树高(即它们相等，或右子树比左子树高1)
+				else {
+					// (01)找出node的右子树中的最小节点
+					// (02)将该最小节点的值赋值给node
+					// (03)删除该最小节点
+					TreeNode<T> min = node.right;
+					while (min.left != null) {
+						min = min.left;
+					}
+					node.right = deleteNode(node.right, min.data);
+					node.data = min.data;
+				}
+			} else {
+				node = node.left != null ? node.left : node.right;
 			}
 		}
 		return node;
@@ -255,6 +357,38 @@ public class BalanceBinaryTree<T extends Comparable<T>> {
 
 		TreeNode(T data) {
 			this.data = data;
+		}
+
+		public T getData() {
+			return data;
+		}
+
+		public void setData(T data) {
+			this.data = data;
+		}
+
+		public int getHeight() {
+			return height;
+		}
+
+		public void setHeight(int height) {
+			this.height = height;
+		}
+
+		public TreeNode<T> getLeft() {
+			return left;
+		}
+
+		public void setLeft(TreeNode<T> left) {
+			this.left = left;
+		}
+
+		public TreeNode<T> getRight() {
+			return right;
+		}
+
+		public void setRight(TreeNode<T> right) {
+			this.right = right;
 		}
 	}
 }
