@@ -1,5 +1,7 @@
 package com.starfall.tree;
 
+import sun.reflect.generics.tree.Tree;
+
 /**
  * @author StarFall
  * @project ProjectDemo
@@ -18,9 +20,12 @@ public class RedBlackTree<T extends Comparable<T>> {
 	 * 左旋
 	 * 
 	 * @param x
-	 *            选择的节点
+	 *            旋转的节点
 	 */
 	private void leftRotate(TreeNode<T> x) {
+		if (x == null) {
+			return;
+		}
 		TreeNode<T> y = x.right;
 		// y的左子树设置为x的右子树
 		x.right = y.left;
@@ -44,12 +49,109 @@ public class RedBlackTree<T extends Comparable<T>> {
 		x.parent = y;
 	}
 
+	/**
+	 * 右旋
+	 * 
+	 * @param y
+	 *            旋转的节点
+	 */
+	private void rightRotate(TreeNode<T> y) {
+		if (y == null) {
+			return;
+		}
+		TreeNode<T> x = y.left;
+		// x的右子树设置为y的左子树
+		y.left = x.right;
+		// y设置为x右子树的父节点
+		if (x.right != null) {
+			x.right.parent = y;
+		}
+		// y的父节点设置x的父节点
+		x.parent = y.parent;
+		// 设置y父节点的左右子树为x
+		if (y.parent == null) {
+			this.root = x;
+		} else if (y.parent.right == y) {
+			y.parent.right = x;
+		} else if (y.parent.left == y) {
+			y.parent.left = x;
+		}
+		// 设置x的右子树为y
+		x.right = y;
+		// 设置x为y的父节点
+		y.parent = x;
+	}
+
+	/**
+	 * 插入节点
+	 * 
+	 * @param data
+	 *            插入数据
+	 */
+	public void insert(T data) {
+		if (data != null) {
+			insert(new TreeNode<>(data, BLACK));
+		}
+	}
+
+	private void insert(TreeNode<T> node) {
+		// 依据二叉排序树特效插入节点
+		TreeNode<T> current = this.root;
+		if (current == null) {
+			this.root = node;
+			return;
+		}
+		TreeNode<T> parent = null;
+		while (current != null) {
+			parent = current;
+			if (current.data.compareTo(node.data) > 0)
+				current = current.left;
+			else if (current.data.compareTo(node.data) < 0)
+				current = current.right;
+			else
+				return;
+		}
+		node.parent = parent;
+		if (parent.data.compareTo(node.data) > 0) {
+			parent.left = node;
+		} else {
+			parent.right = node;
+		}
+		// 着色
+		node.color = RED;
+		// 修正
+		fixAfterInsertion(node);
+	}
+
+	/**
+	 * 插入节点后调整
+	 * 
+	 * @param node
+	 *            调整的节点
+	 */
+	private void fixAfterInsertion(TreeNode<T> node) {
+
+	}
+
 	static class TreeNode<T> {
 		private T data;
 		private boolean color;
 		private TreeNode<T> left;
 		private TreeNode<T> right;
 		private TreeNode<T> parent;
+
+		TreeNode() {
+
+		}
+
+		TreeNode(T data) {
+			this.data = data;
+		}
+
+		TreeNode(T data, boolean color) {
+			this.data = data;
+			this.color = color;
+		}
 
 		public T getData() {
 			return data;
