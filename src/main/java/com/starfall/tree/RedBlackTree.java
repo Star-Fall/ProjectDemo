@@ -95,6 +95,12 @@ public class RedBlackTree<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 插入节点（私有）
+	 * 
+	 * @param node
+	 *            需要插入的节点
+	 */
 	private void insert(TreeNode<T> node) {
 		// 依据二叉排序树特效插入节点
 		TreeNode<T> current = this.root;
@@ -125,10 +131,10 @@ public class RedBlackTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * 插入节点后调整
+	 * 插入节点后修正红黑树
 	 * 
 	 * @param node
-	 *            调整的节点
+	 *            需要修正的节点
 	 */
 	private void fixAfterInsertion(TreeNode<T> node) {
 		// node的父节点为红色的时候进行调整
@@ -184,25 +190,62 @@ public class RedBlackTree<T extends Comparable<T>> {
 				}
 			}
 		}
+		// 最后设置根节点为black
 		root.color = BLACK;
 	}
 
+	/**
+	 * 获取指定节点的父节点
+	 * 
+	 * @param p
+	 *            指定节点
+	 * @return 父节点
+	 */
 	private TreeNode<T> parentOf(TreeNode<T> p) {
 		return (p == null ? null : p.parent);
 	}
 
+	/**
+	 * 获取指定节点的左节点
+	 *
+	 * @param p
+	 *            指定节点
+	 * @return 左节点
+	 */
 	private TreeNode<T> leftOf(TreeNode<T> p) {
 		return (p == null ? null : p.left);
 	}
 
+	/**
+	 * 获取指定节点的右节点
+	 *
+	 * @param p
+	 *            指定节点
+	 * @return 右节点
+	 */
 	private TreeNode<T> rightOf(TreeNode<T> p) {
 		return (p == null ? null : p.right);
 	}
 
+	/**
+	 * 获取指定节点的颜色
+	 * 
+	 * @param p
+	 *            指定节点
+	 * @return 节点颜色
+	 */
 	private boolean colorOf(TreeNode<T> p) {
 		return (p == null ? BLACK : p.color);
 	}
 
+	/**
+	 * 设置指定节点颜色
+	 * 
+	 * @param p
+	 *            指定节点
+	 * @param c
+	 *            颜色
+	 */
 	private void setColor(TreeNode<T> p, boolean c) {
 		if (p != null)
 			p.color = c;
