@@ -6,7 +6,7 @@ package com.starfall.thread.demo01;
  * @package com.starfall.thread.demo01
  * @className Thread03
  * @date 2019/6/11 23:06
- * @description todo
+ * @description Thread的start与run方法
  */
 public class Thread03 extends Thread {
 

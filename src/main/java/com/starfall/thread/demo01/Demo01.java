@@ -25,4 +25,19 @@ public class Demo01 {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	public void test02() throws Exception {
+		Thread04 thread04 = new Thread04();
+		System.out.println("begin == " + thread04.isAlive());
+		thread04.start();
+		Thread.sleep(100);
+		System.out.println("end == " + thread04.isAlive());
+	}
+
+	@Test
+	public void test03() {
+		Thread05 thread05 = new Thread05();
+		thread05.start();
+	}
 }
