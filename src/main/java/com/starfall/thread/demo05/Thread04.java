@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @package com.starfall.thread.demo05
  * @className Thread04
  * @date 2019/6/17 23:43
- * @description todo
+ * @description Thread04
  */
 public class Thread04 extends Thread {
 

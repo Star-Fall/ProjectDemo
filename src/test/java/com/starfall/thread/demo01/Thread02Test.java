@@ -2,15 +2,13 @@ package com.starfall.thread.demo01;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author StarFall
  * @project ProjectDemo
  * @package com.starfall.thread.demo01
  * @className Thread02Test
  * @date 2019/6/6 17:40
- * @description todo
+ * @description Thread02Test
  */
 public class Thread02Test {
 

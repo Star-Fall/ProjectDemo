@@ -6,7 +6,7 @@ package com.starfall.thread.demo02;
  * @package com.starfall.thread.demo02
  * @className Thread01_1
  * @date 2019/6/14 15:06
- * @description todo
+ * @description Thread01_2
  */
 public class Thread01_2 extends Thread {
 

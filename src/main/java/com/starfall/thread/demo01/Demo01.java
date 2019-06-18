@@ -8,7 +8,7 @@ import org.junit.Test;
  * @package com.starfall.thread.demo01
  * @className Demo01
  * @date 2019/6/11 23:05
- * @description todo
+ * @description Demo01
  */
 public class Demo01 {
 

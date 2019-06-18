@@ -6,7 +6,7 @@ package com.starfall.thread.demo01;
  * @package com.starfall.thread.demo01
  * @className Thread02
  * @date 2019/6/6 17:39
- * @description todo
+ * @description Thread02
  */
 public class Thread02 implements Runnable {
 	private int count = 10;

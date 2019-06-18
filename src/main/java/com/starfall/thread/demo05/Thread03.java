@@ -6,7 +6,7 @@ package com.starfall.thread.demo05;
  * @package com.starfall.thread.demo05
  * @className Thread03
  * @date 2019/6/17 23:41
- * @description todo
+ * @description Thread03
  */
 public class Thread03 extends Thread {
 	private volatile ThreadBean03 bean;

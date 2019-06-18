@@ -8,7 +8,7 @@ import java.util.Comparator;
  * @package com.starfall.collection.demo01
  * @className Bean01
  * @date 2019/6/17 15:09
- * @description todo
+ * @description Bean01
  */
 public class Bean01 implements Comparator<Bean01> {
 
