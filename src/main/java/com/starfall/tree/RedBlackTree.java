@@ -1,7 +1,10 @@
 package com.starfall.tree;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.TreeMap;
 
 /**
  * @author StarFall
@@ -81,6 +84,45 @@ public class RedBlackTree<T extends Comparable<T>> {
 		x.right = y;
 		// 设置x为y的父节点
 		y.parent = x;
+	}
+
+	/**
+	 * 查找节点
+	 * 
+	 * @param data
+	 *            节点数据
+	 * @return 节点
+	 */
+	public TreeNode<T> getNode(T data) {
+		if (data != null) {
+			return getNode(this.root, data);
+		}
+		return null;
+	}
+
+	/**
+	 * 递归查找节点
+	 * 
+	 * @param node
+	 *            递归的节点
+	 * @param data
+	 *            查找的数据
+	 * @return 查找结果
+	 */
+	private TreeNode<T> getNode(TreeNode<T> node, T data) {
+		if (node == null || node.data == null || data == null) {
+			// 条件不符，未找到相同节点，递归结束
+			return null;
+		} else if (node.data.compareTo(data) > 0) {
+			// 递归遍历左子树
+			return getNode(node.left, data);
+		} else if (node.data.compareTo(data) < 0) {
+			// 递归遍历右子树
+			return getNode(node.right, data);
+		} else {
+			// 遍历到相同节点，递归结束
+			return node;
+		}
 	}
 
 	/**
@@ -192,6 +234,169 @@ public class RedBlackTree<T extends Comparable<T>> {
 		}
 		// 最后设置根节点为black
 		root.color = BLACK;
+	}
+
+	/**
+	 * 删除节点
+	 * 
+	 * @param data
+	 *            节点数据
+	 */
+	public void remove(T data) {
+		if (data != null) {
+			TreeNode<T> node = getNode(this.root, data);
+			if (node != null) {
+				remove(node);
+			}
+		}
+	}
+
+	/**
+	 * 删除节点算法
+	 * 
+	 * @param p
+	 *            要删除的节点
+	 */
+	private void remove(TreeNode<T> p) {
+		// case1:删除的节点p左右子树不为空，
+		// 使用后继节点代替P，之后删除后继节点
+		if (p.left != null && p.right != null) {
+			TreeNode<T> s = successor(p);
+			p.data = s.data;
+			// 赋值p为后继节点的引用，则删除p即删除后继节点
+			p = s;
+		}
+		// case2、3：删除的节点P左右都为空或者有一个为空
+		// 如果都不为空，此时p被后继节点代替
+		TreeNode<T> replacement = (p.left != null ? p.left : p.right);
+
+		// case2：节点p左右子树有一个不为空
+		if (replacement != null) {
+			// 使用替代节点replacement代替p，再删除p节点
+			replacement.parent = p.parent;
+			if (p.parent == null)
+				root = replacement;
+			else if (p == p.parent.left)
+				p.parent.left = replacement;
+			else
+				p.parent.right = replacement;
+			// 删除p节点
+			p.left = p.right = p.parent = null;
+			// 删除的节点为黑色，需要对替代节点进行修正
+			// 删除的节点为红色，直接删除
+			if (p.color == BLACK)
+				fixAfterDeletion(replacement);
+		} else if (p.parent == null) {
+			root = null;
+		} else {
+			// case3：节点p左右子树都为空
+			// 节点p为黑色，需要进行调整
+			if (p.color == BLACK)
+				fixAfterDeletion(p);
+
+			// 修正完成，直接删除p
+			if (p.parent != null) {
+				if (p == p.parent.left)
+					p.parent.left = null;
+				else if (p == p.parent.right)
+					p.parent.right = null;
+				p.parent = null;
+			}
+		}
+	}
+
+	/**
+	 * 删除节点后，修正红黑树
+	 * 
+	 * @param x
+	 *            需要修正的节点
+	 */
+	private void fixAfterDeletion(TreeNode<T> x) {
+		// 节点x为黑色，并且不为根节点时候，进行修正流程
+		while (x != root && colorOf(x) == BLACK) {
+			// case1：节点X是其父节点的左孩子
+			if (x == leftOf(parentOf(x))) {
+				TreeNode<T> sib = rightOf(parentOf(x));
+				// case1.1：x的兄弟节点是红色
+				if (colorOf(sib) == RED) {
+					setColor(sib, BLACK);
+					setColor(parentOf(x), RED);
+					leftRotate(parentOf(x));
+					sib = rightOf(parentOf(x));
+				}
+				// case1.2：x的兄弟节点为黑色，并且兄弟节点的两个孩子都是黑色
+				if (colorOf(leftOf(sib)) == BLACK && colorOf(rightOf(sib)) == BLACK) {
+					setColor(sib, RED);
+					x = parentOf(x);
+					// 注意：此时重新设置了x节点，流程循环重新开始
+				} else {
+					// case1.3：x的兄弟节点是黑色，并且兄弟节点的右孩子是黑色，左孩子是红色
+					if (colorOf(rightOf(sib)) == BLACK) {
+						setColor(leftOf(sib), BLACK);
+						setColor(sib, RED);
+						rightRotate(sib);
+						sib = rightOf(parentOf(x));
+					}
+					// case1.4：x的兄弟节点是黑色，并且兄弟节点的右孩子是红色，左孩子颜色任意
+					setColor(sib, colorOf(parentOf(x)));
+					setColor(parentOf(x), BLACK);
+					setColor(rightOf(sib), BLACK);
+					leftRotate(parentOf(x));
+					x = root;
+				}
+			} else {
+				// case2：节点X是其父节点的右孩子
+				TreeNode<T> sib = leftOf(parentOf(x));
+
+				if (colorOf(sib) == RED) {
+					setColor(sib, BLACK);
+					setColor(parentOf(x), RED);
+					rightRotate(parentOf(x));
+					sib = leftOf(parentOf(x));
+				}
+
+				if (colorOf(rightOf(sib)) == BLACK && colorOf(leftOf(sib)) == BLACK) {
+					setColor(sib, RED);
+					x = parentOf(x);
+				} else {
+					if (colorOf(leftOf(sib)) == BLACK) {
+						setColor(rightOf(sib), BLACK);
+						setColor(sib, RED);
+						leftRotate(sib);
+						sib = leftOf(parentOf(x));
+					}
+					setColor(sib, colorOf(parentOf(x)));
+					setColor(parentOf(x), BLACK);
+					setColor(leftOf(sib), BLACK);
+					rightRotate(parentOf(x));
+					x = root;
+				}
+			}
+		}
+		// 如果要修正的节点是红色，直接设置为黑色即可
+		// 因为删除了黑色节点才需要进行调整，因此可以直接将红色设为黑色，补充删除的黑色。
+		setColor(x, BLACK);
+	}
+
+	/**
+	 * 获取节点t的后继节点<br>
+	 * 该节点的右子树中的最小节点，即右子树中最左侧节点
+	 * 
+	 * @param t
+	 *            节点t
+	 * @return 后继节点
+	 */
+	private TreeNode<T> successor(TreeNode<T> t) {
+		if (t == null)
+			return null;
+		else if (t.right != null) {
+			TreeNode<T> p = t.right;
+			while (p.left != null)
+				p = p.left;
+			return p;
+		} else {
+			return null;
+		}
 	}
 
 	/**
