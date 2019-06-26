@@ -41,8 +41,30 @@ public class Demo06 {
 		mt2.start();
 	}
 
+	public void test04() {
+		try {
+			Object lock = new Object();
+			Thread04_1 mt0 = new Thread04_1(lock);
+			Thread04_1 mt1 = new Thread04_1(lock);
+			Thread04_1 mt2 = new Thread04_1(lock);
+			mt0.start();
+			mt1.start();
+			mt2.start();
+			Thread.sleep(1000);
+			Thread04_2 mt3 = new Thread04_2(lock);
+			mt3.start();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void test05() {
+		Thread05 thread=new Thread05();
+		thread.start();
+	}
+
 	public static void main(String[] args) throws InterruptedException {
 		Demo06 demo06 = new Demo06();
-		demo06.test03();
+		demo06.test05();
 	}
 }
