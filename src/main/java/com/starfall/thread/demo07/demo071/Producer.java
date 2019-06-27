@@ -1,11 +1,13 @@
-package com.starfall.thread.demo07;
+package com.starfall.thread.demo07.demo071;
+
+import com.starfall.thread.demo07.ValueObject;
 
 /**
  * @author StarFall
  * @project ProjectDemo
- * @package com.starfall.thread.demo07
+ * @package com.starfall.thread.demo07.demo071
  * @className Producer
- * @date 2019/6/26 23:24
+ * @date 2019/6/27 14:52
  * @description Producer
  */
 public class Producer {
@@ -18,12 +20,12 @@ public class Producer {
 	public void setValue() {
 		try {
 			synchronized (lock) {
-				if (!ValueObject.value.equals("")){
+				while (!ValueObject.value.equals("")) {
 					System.out.println("生产者-" + Thread.currentThread().getName() + " waiting 中...");
 					lock.wait();
 				}
 				String value = System.currentTimeMillis() + "_" + System.nanoTime();
-				System.out.println("Set的值是：" + value);
+				System.out.println("生产者-" + Thread.currentThread().getName() + " Set的值是：" + value);
 				ValueObject.value = value;
 				lock.notify();
 			}

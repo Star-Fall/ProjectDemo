@@ -1,11 +1,13 @@
-package com.starfall.thread.demo07;
+package com.starfall.thread.demo07.demo071;
+
+import com.starfall.thread.demo07.ValueObject;
 
 /**
  * @author StarFall
  * @project ProjectDemo
- * @package com.starfall.thread.demo07
+ * @package com.starfall.thread.demo07.demo071
  * @className Customer
- * @date 2019/6/26 23:24
+ * @date 2019/6/27 14:52
  * @description Customer
  */
 public class Customer {
@@ -18,11 +20,11 @@ public class Customer {
 	public void getValue() {
 		try {
 			synchronized (lock) {
-				if (ValueObject.value.equals("")) {
+				while (ValueObject.value.equals("")) {
 					System.out.println("消费者-" + Thread.currentThread().getName() + " waiting 中...");
 					lock.wait();
 				}
-				System.out.println("Get的值是：" + ValueObject.value);
+				System.out.println("消费者-" + Thread.currentThread().getName() + " Get的值是：" + ValueObject.value);
 				ValueObject.value = "";
 				lock.notify();
 			}
