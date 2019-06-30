@@ -8,7 +8,7 @@ import java.util.*;
  * @package com.starfall.collection.demo01
  * @className Demo02
  * @date 2019/6/20 10:59
- * @description Demo02
+ * @description Demo02 LinkedHashMap
  */
 public class Demo02 {
 
