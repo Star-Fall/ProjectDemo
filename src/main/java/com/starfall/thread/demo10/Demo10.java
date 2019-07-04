@@ -10,14 +10,18 @@ package com.starfall.thread.demo10;
  */
 public class Demo10 {
 
+	public void test01() {
+		ThreadA threadA = new ThreadA();
+		threadA.setName("ThreadA");
+
+		ThreadB threadB = new ThreadB();
+		threadB.setName("ThreadB");
+		threadA.start();
+		threadB.start();
+	}
+
 	public static void main(String[] args) {
-		Integer a = 1;
-		Integer b = 1;
-		System.out.println(a == b);
-
-		Integer c = 128;
-		Integer d = 128;
-		System.out.println(c == d);
-
+		Demo10 demo10 = new Demo10();
+		demo10.test01();
 	}
 }
