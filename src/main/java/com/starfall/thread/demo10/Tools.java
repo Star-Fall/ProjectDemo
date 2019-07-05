@@ -10,4 +10,5 @@ package com.starfall.thread.demo10;
  */
 public class Tools {
 	public static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+	public static InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
 }

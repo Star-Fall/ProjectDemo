@@ -20,8 +20,24 @@ public class Demo10 {
 		threadB.start();
 	}
 
+	public void test02() {
+		try {
+			Tools.inheritableThreadLocal.set("Main线程 - " + 1);
+			System.out.println("Main线程 get value = " + Tools.inheritableThreadLocal.get());
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		ThreadC threadC = new ThreadC();
+		threadC.setName("ThreadC");
+		threadC.start();
+		System.out.println("Main线程修改值");
+		Tools.inheritableThreadLocal.set("Main线程 - " + 2);
+		System.out.println("Main线程 get value = " + Tools.inheritableThreadLocal.get());
+	}
+
 	public static void main(String[] args) {
 		Demo10 demo10 = new Demo10();
-		demo10.test01();
+		demo10.test02();
 	}
 }
