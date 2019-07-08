@@ -15,6 +15,12 @@ public class Task01 extends TimerTask {
 
 	@Override
 	public void run() {
-		System.out.println("运行了！时间为：" + Tools.getDateFomatter(new Date()));
+		System.out.println("执行任务start！当前时间为：" + Tools.getDateFomatter(new Date()));
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("执行任务end！当前时间为：" + Tools.getDateFomatter(new Date()));
 	}
 }
