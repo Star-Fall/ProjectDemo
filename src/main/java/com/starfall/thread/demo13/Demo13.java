@@ -127,8 +127,17 @@ public class Demo13 {
 		timer.schedule(task01, 3000, 4000);
 	}
 
+	public void test10() {
+		Timer timer = new Timer();
+		Task03 task03 = new Task03();
+		String dateTime = "2019-07-08 22:44:00";
+		System.out.println("设置计划任务的时间：" + dateTime);
+		//timer.schedule(task03, Tools.getDate(dateTime, Tools.PATTER), 3000);
+		timer.scheduleAtFixedRate(task03, Tools.getDate(dateTime, Tools.PATTER), 3000);
+	}
+
 	public static void main(String[] args) {
 		Demo13 demo13 = new Demo13();
-		demo13.test09();
+		demo13.test10();
 	}
 }
