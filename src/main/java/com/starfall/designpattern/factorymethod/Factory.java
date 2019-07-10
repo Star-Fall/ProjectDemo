@@ -6,7 +6,7 @@ package com.starfall.designpattern.factorymethod;
  * @package com.starfall.designpattern.factorymethod
  * @className Factory
  * @date 2019/7/9 17:17
- * @description Factory
+ * @description Factory 抽象工厂角色
  */
 public interface Factory {
 	/**

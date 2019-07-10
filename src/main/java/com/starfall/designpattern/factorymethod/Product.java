@@ -8,10 +8,10 @@ package com.starfall.designpattern.factorymethod;
  * @date 2019/7/9 17:16
  * @description Product 抽象产品角色
  */
-public abstract class Product {
+public interface Product {
 
 	/**
 	 * 产品生产方法
 	 */
-	public abstract void produce();
+	public void produce();
 }

@@ -13,7 +13,8 @@ public class TestClient {
 	public static void main(String[] args) {
 		Product productA = new ConcreteFactoryA().getProduct();
 		productA.produce();
-
-
+        System.out.println();
+		Product productB = new ConcreteFactoryB().getProduct();
+		productB.produce();
 	}
 }

@@ -6,7 +6,7 @@ package com.starfall.designpattern.factorymethod;
  * @package com.starfall.designpattern.factorymethod
  * @className ConcreteFactoryB
  * @date 2019/7/9 17:29
- * @description ConcreteFactoryB
+ * @description ConcreteFactoryB 具体生产工厂B
  */
 public class ConcreteFactoryB implements Factory {
 	@Override
