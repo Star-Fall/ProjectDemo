@@ -1,5 +1,7 @@
 package com.starfall.sort;
 
+import java.util.Arrays;
+
 /**
  * @author StarFall
  * @project ProjectDemo
@@ -9,44 +11,41 @@ package com.starfall.sort;
  * @description InsertionSort插入排序
  */
 public class InsertionSort {
+
 	/**
-	 * Straight Insertion Sort<br>
 	 * 直接插入排序
+	 *
+	 * @param array
+	 *            int数组
+	 * @param length
+	 *            数组长度
 	 */
-	public void straightInsertionSort(int a[], int n) {
-		int i, j, k;
-
-		for (i = 1; i < n; i++) {
-
-			// 为a[i]在前面的a[0...i-1]有序区间中找一个合适的位置
-			for (j = i - 1; j >= 0; j--)
-				if (a[j] < a[i])
+	public static void straightInsertionSort(int array[], int length) {
+		// 外层循环：遍历无序序列
+		for (int i = 1; i < length; i++) {
+			// 待插入的元素
+			int temp = array[i];
+			int j = 0;
+			// 内层循环：倒序循环有序序列，即i前面的序列
+			for (j = i - 1; j >= 0; j--) {
+				// 如果要插入的元素小于序列元素，序列元素后移
+				if (temp < array[j]) {
+					array[j + 1] = array[j];
+				} else {
+					// 不需要后移需要立即停止遍历，防止下标j越界
 					break;
-
-			// 如找到了一个合适的位置
-			if (j != i - 1) {
-				// 将比a[i]大的数据向后移
-				int temp = a[i];
-				for (k = i - 1; k > j; k--)
-					a[k + 1] = a[k];
-				// 将a[i]放到正确位置上
-				a[k + 1] = temp;
+				}
 			}
+			// 插入待插入元素到j+1位置
+			array[j + 1] = temp;
+			System.out.println("第" + (i) + "趟：\t" + Arrays.toString(array));
 		}
 	}
 
-	public void straightInsertionSort(int arr[]) {
-		int temp,j;
-		for (int i = 1; i < arr.length; i++) {
-			temp = arr[i];
-			// 遍历有序序列
-			for (j = i - 1; j >= 0; j--) {
-				// 找到插入temp的位置
-				if (temp < arr[j]) {
-
-				}
-			}
-		}
-
+	public static void main(String[] args) {
+		int array[] = { 2, 9, 6, 8, 4 };
+		System.out.println("排序前：\t" + Arrays.toString(array));
+		straightInsertionSort(array, array.length);
+		System.out.println("排序后：\t" + Arrays.toString(array));
 	}
 }
