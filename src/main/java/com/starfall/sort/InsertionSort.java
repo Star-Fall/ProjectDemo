@@ -20,7 +20,7 @@ public class InsertionSort {
 	 * @param length
 	 *            数组长度
 	 */
-	public static void straightInsertionSort(int array[], int length) {
+	public static void insertionSort(int array[], int length) {
 		// 外层循环：遍历无序序列
 		for (int i = 1; i < length; i++) {
 			// 待插入的元素
@@ -42,10 +42,31 @@ public class InsertionSort {
 		}
 	}
 
+	/**
+	 * 直接插入排序优化
+	 * 
+	 * @param array
+	 *            int数组
+	 * @param length
+	 *            数组长度
+	 */
+	public static void insertionSortPlus(int array[], int length) {
+		for (int i = 1; i < length; i++) {
+			int temp = array[i];
+			int j = 0;
+			// 把if中条件判断与for循环判断结合起来
+			for (j = i - 1; j >= 0 && temp < array[j]; j--) {
+				array[j + 1] = array[j];
+			}
+			array[j + 1] = temp;
+			System.out.println("第" + (i) + "趟：\t" + Arrays.toString(array));
+		}
+	}
+
 	public static void main(String[] args) {
 		int array[] = { 2, 9, 6, 8, 4 };
 		System.out.println("排序前：\t" + Arrays.toString(array));
-		straightInsertionSort(array, array.length);
+		insertionSort(array, array.length);
 		System.out.println("排序后：\t" + Arrays.toString(array));
 	}
 }

@@ -24,13 +24,14 @@ public class BubbleSort {
 		if (arr == null || length <= 1) {
 			return;
 		}
+		int temp = 0;
 		// 外部循环，需要遍历的趟数为length-1
 		for (int i = 0; i < length - 1; i++) {
 			// 内部循环，第i趟需要比较的次数应该为length-i，因为i从0开始所以为length-1-i
 			for (int j = 0; j < length - 1 - i; j++) {
 				// 比较相邻的元素，如果前面的数大于后面的数，则交换
 				if (arr[j] > arr[j + 1]) {
-					int temp = arr[j];
+					temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
 				}
