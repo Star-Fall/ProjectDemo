@@ -50,7 +50,7 @@ public class TestClient {
 	 * 多线程测试懒汉模式——线程安全
 	 */
 	public void testLazySingletonThreadSafe() {
-		Thread[] threads = new Thread[100];
+		Thread[] threads = new Thread[length];
 		for (int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(new Runnable() {
 				@Override
@@ -89,8 +89,12 @@ public class TestClient {
 			threads[i] = new Thread(new Runnable() {
 				@Override
 				public void run() {
+					// System.out.println(Thread.currentThread().getName() + "\t："
+					// + StaticInnerClassSingleton.getInstance().hashCode());
+
 					System.out.println(Thread.currentThread().getName() + "\t："
-							+ StaticInnerClassSingleton.getInstance().hashCode());
+							+ System.identityHashCode(StaticInnerClassSingleton.getInstance()));
+
 				}
 			});
 			threads[i].start();
@@ -101,8 +105,8 @@ public class TestClient {
 		TestClient test = new TestClient();
 		// test.testHungrySingleton();
 		// test.testLazySingleton();
-		// test.testLazySingletonThreadSafe();
+		test.testLazySingletonThreadSafe();
 		// test.testLazySingletonDCL();
-		test.testStaticInnerClassSingleton();
+		// test.testStaticInnerClassSingleton();
 	}
 }
