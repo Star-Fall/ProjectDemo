@@ -36,29 +36,29 @@ public class TestClient {
 		System.out.println(singleton2.hashCode());
 	}
 
-/**
- * 测试序列化攻击单例-解决方案
- */
-public void test2() {
-	HungrySingletonSafe singleton = HungrySingletonSafe.getInstance();
-	HungrySingletonSafe singleton2 = null;
+	/**
+	 * 测试序列化攻击单例-解决方案
+	 */
+	public void test2() {
+		HungrySingletonSafe singleton = HungrySingletonSafe.getInstance();
+		HungrySingletonSafe singleton2 = null;
 
-	try {
-		// 序列化对象
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("HungrySingletonSafe"));
-		oos.writeObject(singleton);
-		oos.close();
+		try {
+			// 序列化对象
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("HungrySingletonSafe"));
+			oos.writeObject(singleton);
+			oos.close();
 
-		// 反序列化对象
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("HungrySingletonSafe"));
-		singleton2 = (HungrySingletonSafe) ois.readObject();
-		ois.close();
-	} catch (IOException | ClassNotFoundException e) {
-		e.printStackTrace();
+			// 反序列化对象
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("HungrySingletonSafe"));
+			singleton2 = (HungrySingletonSafe) ois.readObject();
+			ois.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(singleton.hashCode());
+		System.out.println(singleton2.hashCode());
 	}
-	System.out.println(singleton.hashCode());
-	System.out.println(singleton2.hashCode());
-}
 
 	public static void main(String[] args) {
 		TestClient testClient = new TestClient();
