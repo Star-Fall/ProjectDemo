@@ -18,7 +18,6 @@ public class TestClient {
 	public void test1() {
 		HungrySingleton singleton = HungrySingleton.getInstance();
 		HungrySingleton singleton2 = null;
-
 		try {
 			// 序列化对象
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("HungrySingleton"));
@@ -60,9 +59,33 @@ public class TestClient {
 		System.out.println(singleton2.hashCode());
 	}
 
+	/**
+	 * 枚举抵御序列化攻击
+	 */
+	public void test3() {
+		SingletonEnum singletonEnum = SingletonEnum.INSTANCE;
+		SingletonEnum singletonEnum2 = null;
+		try {
+			// 序列化对象
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("SingletonEnum"));
+			oos.writeObject(singletonEnum);
+			oos.close();
+
+			// 反序列化对象
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("SingletonEnum"));
+			singletonEnum2 = (SingletonEnum) ois.readObject();
+			ois.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(singletonEnum.hashCode());
+		System.out.println(singletonEnum2.hashCode());
+	}
+
 	public static void main(String[] args) {
 		TestClient testClient = new TestClient();
 		// testClient.test1();
-		testClient.test2();
+		// testClient.test2();
+		testClient.test3();
 	}
 }

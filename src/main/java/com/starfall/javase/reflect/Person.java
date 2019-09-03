@@ -112,12 +112,28 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person{" +
-				"age=" + age +
-				", code=" + code +
-				", name='" + name + '\'' +
-				", birthday=" + birthday +
-				", field='" + field + '\'' +
-				'}';
+		return "Person{" + "age=" + age + ", code=" + code + ", name='" + name + '\'' + ", birthday=" + birthday
+				+ ", field='" + field + '\'' + '}';
+	}
+
+	private void show1() {
+		System.out.println("私有无参空返回值：private void show1()");
+	}
+
+	private void show2(String str) {
+		System.out.println("私有有参空返回值：private void show2(String str) str = " + str);
+	}
+
+	private String show3(String str) {
+		System.out.println("私有有参有返回值：private void show3(String str) str = " + str);
+		return str;
+	}
+
+	protected void show4() {
+		System.out.println("受保护的无参空返回值：protected void show4()");
+	}
+
+	public void show5() {
+		System.out.println("公有无参空返回值：public void show5()");
 	}
 }

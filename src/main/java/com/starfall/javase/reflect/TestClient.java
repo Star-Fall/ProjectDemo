@@ -134,8 +134,69 @@ public class TestClient {
 		}
 	}
 
+	/**
+	 * 反射成员方法Method
+	 */
+	public void test4() {
+		try {
+			Class class1 = Class.forName("com.starfall.javase.reflect.Person");
+			System.out.println("************获取所有公有成员方法************");
+			Method[] methods = class1.getMethods();
+			for (Method method : methods) {
+				System.out.println(method);
+			}
+			System.out.println("************ 根据方法名和参数获取公有成员方法 ***********");
+			Method show5 = class1.getMethod("show5");
+			System.out.println(show5);
+			System.out.println("************获取所有成员方法************");
+			Method[] declaredMethods = class1.getDeclaredMethods();
+			for (Method declaredMethod : declaredMethods) {
+				System.out.println(declaredMethod);
+			}
+			System.out.println("************根据方法名和参数获取私有成员方法************");
+			Method show2 = class1.getDeclaredMethod("show2", String.class);
+			System.out.println(show2);
+		} catch (ClassNotFoundException | NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Method常用方法
+	 */
+	public void test4_1() {
+		try {
+			Class class1 = Class.forName("com.starfall.javase.reflect.Person");
+			Method method = class1.getDeclaredMethod("show3", String.class);
+			System.out.println(method);
+			System.out.println("方法修饰符：" + Modifier.toString(method.getModifiers()));
+			System.out.println("方法返回类型：" + method.getReturnType());
+			System.out.println("方法名称：" + method.getName());
+			System.out.println("方法参数列表：");
+			Class<?>[] parameterTypes = method.getParameterTypes();
+			for (Class<?> parameterType : parameterTypes) {
+				System.out.println(parameterType);
+			}
+			System.out.println("方法异常列表：");
+			Class<?>[] exceptionTypes = method.getExceptionTypes();
+			for (Class<?> exceptionType : exceptionTypes) {
+				System.out.println(exceptionType);
+			}
+			// 执行目标方法
+			System.out.println("执行目标方法：");
+			// 设置允许访问
+			method.setAccessible(true);
+			// 需要两个参数，一个是要调用的对象（反射创建的对象），一个是实参
+			Object invoke = method.invoke(class1.newInstance(), "show3");
+			System.out.println(invoke);
+		} catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException
+				| InstantiationException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void main(String[] args) {
 		TestClient test = new TestClient();
-		test.test3_1();
+		test.test4_1();
 	}
 }
