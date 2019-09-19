@@ -1,4 +1,4 @@
-package com.starfall.designpattern.compositepattern;
+package com.starfall.designpattern.compositepattern.safe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * @package com.starfall.designpattern.compositepattern
  * @className Composite
  * @date 2019/9/18 18:18
- * @description 容器构件（Composite）
+ * @description 容器构件（Composite）——安全组合模式
  */
 public class Composite implements Component {
 
@@ -66,8 +66,8 @@ public class Composite implements Component {
 		System.out.println(preStr + "+" + this.name);
 		// 如果还包含有子组件，那么就输出这些子组件对象
 		if (this.childComponents != null) {
-			// 添加两个空格，表示向后缩进两个空格
-			preStr += "  ";
+			// 向后缩进
+			preStr += "\t";
 			// 输出当前对象的子对象
 			for (Component c : childComponents) {
 				// 递归输出每个子对象

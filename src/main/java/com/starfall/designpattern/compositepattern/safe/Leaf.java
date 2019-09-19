@@ -1,4 +1,4 @@
-package com.starfall.designpattern.compositepattern;
+package com.starfall.designpattern.compositepattern.safe;
 
 /**
  * @author StarFall
@@ -6,7 +6,7 @@ package com.starfall.designpattern.compositepattern;
  * @package com.starfall.designpattern.compositepattern
  * @className Leaf
  * @date 2019/9/18 18:21
- * @description 叶子构件（Leaf）
+ * @description 叶子构件（Leaf）——安全组合模式
  */
 public class Leaf implements Component {
 	/**

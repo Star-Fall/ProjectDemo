@@ -38,6 +38,6 @@ public class Demo10 {
 
 	public static void main(String[] args) {
 		Demo10 demo10 = new Demo10();
-		demo10.test02();
+		demo10.test01();
 	}
 }

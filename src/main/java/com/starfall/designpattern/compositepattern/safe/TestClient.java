@@ -1,4 +1,4 @@
-package com.starfall.designpattern.compositepattern;
+package com.starfall.designpattern.compositepattern.safe;
 
 /**
  * @author StarFall
@@ -6,7 +6,7 @@ package com.starfall.designpattern.compositepattern;
  * @package com.starfall.designpattern.compositepattern
  * @className TestClient
  * @date 2019/9/18 18:22
- * @description 测试端
+ * @description 安全组合模式测试端
  */
 public class TestClient {
 
