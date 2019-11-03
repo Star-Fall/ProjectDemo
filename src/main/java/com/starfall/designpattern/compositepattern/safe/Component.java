@@ -11,7 +11,7 @@ package com.starfall.designpattern.compositepattern.safe;
 public interface Component {
 	/**
 	 * 构件的默认行为：输出结构
-	 * 
+	 *
 	 * @param preStr
 	 *            前缀
 	 */
