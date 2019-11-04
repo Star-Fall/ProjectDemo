@@ -12,11 +12,11 @@ import java.util.Properties;
  * @author StarFall
  * @project ProjectDemo
  * @package com.starfall.javase.javaio
- * @className TestClient
- * @date 2019/9/23 17:05
- * @description todo
+ * @className Demo0
+ * @date 2019/10/9 17:09
+ * @description File 操作测试
  */
-public class TestClient {
+public class Demo0 {
 
 	/**
 	 * File 静态常量
@@ -176,13 +176,13 @@ public class TestClient {
 	}
 
 	public static void main(String[] args) throws URISyntaxException, IOException {
-		TestClient testClient = new TestClient();
-		// testClient.test1();
-		// testClient.test2();
-		// testClient.test3();
-		// testClient.test4();
-		// testClient.test5();
-		// testClient.test6();
-		testClient.test7();
+		Demo0 demo = new Demo0();
+		// demo.test1();
+		// demo.test2();
+		// demo.test3();
+		// demo.test4();
+		// demo.test5();
+		// demo.test6();
+		demo.test7();
 	}
 }
