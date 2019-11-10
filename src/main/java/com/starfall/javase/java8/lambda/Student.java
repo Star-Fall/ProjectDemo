@@ -5,13 +5,40 @@ import java.io.Serializable;
 /**
  * @author StarFall
  * @date 2019/11/7 22:31
- * @description TODO
+ * @description Student
  */
 public class Student implements Serializable {
 	private static final long serialVersionUID = -8394342265158867760L;
 
 	private Integer age;
 	private String name;
+
+	private Student(Builder builder) {
+		age = builder.age;
+		name = builder.name;
+	}
+
+	public static final class Builder {
+		private Integer age;
+		private String name;
+
+		public Builder() {
+		}
+
+		public Builder age(Integer val) {
+			age = val;
+			return this;
+		}
+
+		public Builder name(String val) {
+			name = val;
+			return this;
+		}
+
+		public Student build() {
+			return new Student(this);
+		}
+	}
 
 	public Integer getAge() {
 		return age;
