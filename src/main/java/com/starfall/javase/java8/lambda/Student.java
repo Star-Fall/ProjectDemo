@@ -13,6 +13,14 @@ public class Student implements Serializable {
 	private Integer age;
 	private String name;
 
+	public Student() {
+	}
+
+	public Student(Integer age, String name) {
+		this.age = age;
+		this.name = name;
+	}
+
 	private Student(Builder builder) {
 		age = builder.age;
 		name = builder.name;
