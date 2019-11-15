@@ -2,10 +2,10 @@ package com.starfall.designpattern.flyweightpattern;
 
 /**
  * @author StarFall
- * @date 2019/11/14 23:39
- * @description 具体享元类
+ * @date 2019/11/15 23:38
+ * @description 非共享具体享元类
  */
-public class ConcreteFlyweight implements Flyweight {
+public class UnsharedConcreteFlyweight implements Flyweight {
 
 	/**
 	 * 内部状态
@@ -18,7 +18,7 @@ public class ConcreteFlyweight implements Flyweight {
 	 * @param intrinsic
 	 *            内部状态
 	 */
-	public ConcreteFlyweight(String intrinsic) {
+	public UnsharedConcreteFlyweight(String intrinsic) {
 		this.intrinsic = intrinsic;
 	}
 
@@ -30,9 +30,9 @@ public class ConcreteFlyweight implements Flyweight {
 	 */
 	@Override
 	public void operate(String extrinsic) {
-        System.out.println("具体享元类operate方法：**********begin**********");
-		System.out.println("设置外部状态...");
+		System.out.println("非共享具体享元类operate方法：**********begin**********");
+		System.out.println("内部状态：" + intrinsic);
 		System.out.println("外部状态：" + extrinsic);
-        System.out.println("具体享元类operate方法：**********end**********");
+        System.out.println("非共享具体享元类operate方法：**********end**********");
 	}
 }
