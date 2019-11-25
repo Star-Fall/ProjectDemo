@@ -13,6 +13,7 @@ public class TestClient {
 	public static void main(String[] args) {
 		// 需要一个目标对象
 		Subject subject = new RealSubject();
+		System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
 		// 动态代理类装载目标对象
 		InvocationHandler handler = new DynamicProxy(subject);
 		// 使用Proxy创建目标对象的代理对象
